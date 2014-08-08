@@ -1,65 +1,39 @@
-var util = require('util')
-  , Scout = require('zetta').Scout
-  , hue = require("node-hue-api")
-  , HueApi = require("node-hue-api").HueApi
-  , HueHubDriver = require('./hub')
-  , HueBulbDriver = require('./bulb');
+var util = require('util');
+var Scout = require('zetta').Scout;
+var WeMo = require('wemo-js');
+var Socket = require('./socket');
 
-var HueScout = module.exports = function() {
-  this.interval = 15000;
+var WemoScout = module.exports = function() {
   Scout.call(this);
 };
-util.inherits(HueScout, Scout);
+util.inherits(WemoScout, Scout);
 
-HueScout.prototype.init = function(next) {
-  // start search logic
+WemoScout.prototype.init = function(next) {
   this.search();
-  setInterval(this.search.bind(this),this.interval);
+  setInterval(this.search.bind(this), 5000);
   next();
 };
 
-HueScout.prototype.search = function() {
-  var self = this;
-  hue.locateBridges(function(err, hubs) {
-    if (err){
-      console.error(err);
-      return;
-    }
-    hubs.forEach(function(hueHub){
-      self.foundHub(hueHub);
-    });
-  });
+WemoScout.prototype.search = function() {
+  this.client = WeMo.Search();
+  this.client.on('found', this.foundDevice.bind(this));
 };
 
-HueScout.prototype.foundHub = function(data) {
+WemoScout.prototype.foundDevice = function(device) {
+  if (device.modelName === 'Socket') {
+    this.initDevice('wemo-socket', Socket, device);
+  }
+};
+
+WemoScout.prototype.initDevice = function(type, Class, device) {
   var self = this;
-  var hubQuery = this.server.where({ type: 'huehub', hubId: data.id });
-  this.server.find(hubQuery, function(err, results){
+  var query = this.server.where({ type: type, UDN: device.UDN });
+  this.server.find(query, function(err, results){
     var huehub = null;
     if (results.length > 0) {
-      data.auth = results[0].auth;
-      huehub = self.provision(results[0], HueHubDriver, data);
+      self.provision(results[0], Class, device);
     } else {
-      huehub = self.discover(HueHubDriver, data);
-    }
-    
-    if (huehub) {
-      huehub.onDiscoveredLight = self.foundLight.bind(self);
-    }
-  });
-};
-
-HueScout.prototype.foundLight = function(data, hue) {
-  var self = this;
-  var hubQuery = this.server.where({ type: 'huebulb', bulbId: data.id });
-  this.server.find(hubQuery, function(err, results){
-    if (err) {
-      return;
-    }
-    if (results.length > 0) {
-      self.provision(results[0], HueBulbDriver, data, hue);
-    } else {
-      self.discover(HueBulbDriver, data, hue);
+      self.discover(Class, device);
     }
   });
 };
