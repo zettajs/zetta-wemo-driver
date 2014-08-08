@@ -1,23 +1,26 @@
-# Phillip's Hue Zetta Driver
+# Zetta Driver for Belkin's Wemo
 
-[Zetta](http://zettajs.io) device package for Phillips Hue Driver, use this to discover Hue hubs and bulbs on your [Zetta](http://zettajs.io) platform. Uses the [Node Hue Api](https://github.com/peter-murray/node-hue-api) from Peter Murray to communicate with Hue hub and bulbs.
+[Zetta](http://zettajs.io) device package for Belkin Wemo Driver, use this to discover Wemo sockets on your [Zetta](http://zettajs.io) platform. Uses the [node-wemo](https://github.com/hecomi/node-wemo) from Hecomi to communicate with the socket.
 
 ## Install
 
 ```
-npm install zetta-hue-driver
+npm install zetta-wemo-driver
 ```
 
 ## Usage
 
 ```js
 var zetta = require('zetta');
-var Hue = require('zetta-hue-driver');
+var Wemo = require('zetta-wemo-driver');
 
 zetta()
   .expose('*')
-  .use(Hue)
+  .use(Wemo)
   .listen(3000, function(err) {
+    if(err) {
+      console.log(err);
+    }
     console.log('Listening on http://localhost:3000/');
   });
 

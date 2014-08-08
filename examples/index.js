@@ -1,12 +1,9 @@
 var zetta = require('zetta');
-var Hue = require('../index');
+var Wemo = require('../index');
 
-var app = zetta()
-app.id = 'F76457112-8056-4955-a860-4e62c81a6a8b';
-
-app.name('local')
+zetta()
   .expose('*')
-  .use(Hue)
+  .use(Wemo)
   .listen(3000, function(err) {
     if(err) {
       console.log(err);
