@@ -1,0 +1,31 @@
+{
+  "name": "zetta-wemo-driver",
+  "version": "0.0.1",
+  "description": "Zetta wemo driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Magaluk <AdamMagaluk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "wemo-js": "^0.1.1",
+    "zetta": ">0.1.0"
+  },
+  "keywords": [
+    "zetta",
+    "wemo"
+  ],
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zettajs/zetta-wemo-driver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zettajs/zetta-wemo-driver/issues"
+  },
+  "homepage": "https://github.com/zettajs/zetta-wemo-driver"
+}
