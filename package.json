@@ -1,6 +1,6 @@
 {
   "name": "zetta-wemo-driver",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Zetta wemo driver",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "Adam Magaluk <AdamMagaluk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "wemo-js": "^0.1.1",
+    "wemo-js": "^0.2.0",
     "zetta": ">0.1.0"
   },
   "keywords": [
