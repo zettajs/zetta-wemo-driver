@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "wemo-js": "^0.3.0",
-    "zetta": ">0.1.0"
+    "zetta-device": "^0.3.0",
+    "zetta-scout": "^0.3.0"
   },
   "keywords": [
     "zetta",
