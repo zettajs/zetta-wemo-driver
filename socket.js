@@ -1,6 +1,6 @@
 var util = require('util');
 var WeMo = require('wemo-js');
-var Device = require('zetta').Device;
+var Device = require('zetta-device');
 
 var ignoreProperties = ['binaryState',
                         'serviceList',

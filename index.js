@@ -1,5 +1,5 @@
 var util = require('util');
-var Scout = require('zetta').Scout;
+var Scout = require('zetta-scout');
 var WeMo = require('wemo-js');
 var Socket = require('./socket');
 
