@@ -1,6 +1,6 @@
 {
   "name": "zetta-wemo-driver",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Zetta wemo driver",
   "main": "index.js",
   "scripts": {
