@@ -1,6 +1,6 @@
 {
   "name": "zetta-wemo-driver",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Zetta wemo driver",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "wemo-js": "^0.3.0",
-    "zetta-device": "^0.3.0",
+    "zetta-device": "^0.7.0",
     "zetta-scout": "^0.3.0"
   },
   "keywords": [
